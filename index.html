@@ -1,0 +1,167 @@
+<html><head><base href="https://example.com/agenda/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda Imprimível</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  .notes {
+    min-height: 100px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  @media print {
+    body {
+      font-size: 12pt;
+    }
+    .no-print {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+  <h1>Minha Agenda Semanal</h1>
+  
+  <table>
+    <tr>
+      <th>Horário</th>
+      <th>Segunda</th>
+      <th>Terça</th>
+      <th>Quarta</th>
+      <th>Quinta</th>
+      <th>Sexta</th>
+    </tr>
+    <tr>
+      <td>08:00 - 10:00</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>10:00 - 12:00</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>12:00 - 14:00</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>14:00 - 16:00</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>16:00 - 18:00</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+
+  <h2>Notas e Lembretes</h2>
+  <div class="notes"></div>
+
+  <h2>Tarefas da Semana</h2>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+  <div class="no-print">
+    <h2>Instruções para Impressão</h2>
+    <ol>
+      <li>Clique em "Arquivo" (ou "File") no seu navegador.</li>
+      <li>Selecione "Imprimir" (ou "Print").</li>
+      <li>Nas opções de impressão, certifique-se de que "Plano de Fundo" (ou "Background Graphics") esteja marcado.</li>
+      <li>Escolha a orientação "Retrato" para melhor visualização.</li>
+      <li>Clique em "Imprimir" para gerar sua agenda em papel!</li>
+    </ol>
+  </div>
+
+  <script>
+    // Adiciona a data atual no topo da agenda
+    const today = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const dateString = today.toLocaleDateString('pt-BR', options);
+    const dateElement = document.createElement('p');
+    dateElement.textContent = `Data: ${dateString}`;
+    document.body.insertBefore(dateElement, document.body.firstChild);
+
+    // Torna as células da tabela editáveis
+    const cells = document.querySelectorAll('td');
+    cells.forEach(cell => {
+      cell.contentEditable = true;
+      cell.addEventListener('focus', function() {
+        this.style.background = '#e8f0fe';
+      });
+      cell.addEventListener('blur', function() {
+        this.style.background = '';
+      });
+    });
+
+    // Torna a área de notas editável
+    const notes = document.querySelector('.notes');
+    notes.contentEditable = true;
+    notes.addEventListener('focus', function() {
+      this.style.background = '#e8f0fe';
+    });
+    notes.addEventListener('blur', function() {
+      this.style.background = '';
+    });
+
+    // Torna os itens da lista de tarefas editáveis
+    const tasks = document.querySelectorAll('ul li');
+    tasks.forEach(task => {
+      task.contentEditable = true;
+      task.addEventListener('focus', function() {
+        this.style.background = '#e8f0fe';
+      });
+      task.addEventListener('blur', function() {
+        this.style.background = '';
+      });
+    });
+  </script>
+</body></html>
